@@ -491,6 +491,7 @@ export default Kapsule({
 
     // Setup tooltip
     const toolTipElem = document.createElement('div');
+    toolTipElem.style.opacity = 0;
     toolTipElem.classList.add('graph-tooltip');
     container.appendChild(toolTipElem);
 
@@ -514,11 +515,26 @@ export default Kapsule({
         pointerPos.x = ev.pageX - offset.left;
         pointerPos.y = ev.pageY - offset.top;
 
-        // Move tooltip
-        toolTipElem.style.top = `${pointerPos.y}px`;
-        toolTipElem.style.left = `${pointerPos.x}px`;
+        // edge calculation
+        const padding = 10;
+        const mixTop = 0 + padding;
+        const maxTop = container.offsetHeight - toolTipElem.offsetHeight - padding;
+        const mixLeft = toolTipElem.offsetWidth / 2 + padding;
+        const maxLeft = container.offsetWidth - toolTipElem.offsetWidth / 2 - padding;
 
-        //
+        // move the tooltip
+        if (toolTipElem.style.visibility === "visible") {
+          toolTipElem.style.top =
+            pointerPos.y >= maxTop
+              ? `${pointerPos.y - toolTipElem.offsetHeight - 50}px`
+              : `${Math.min(Math.max(pointerPos.y, mixTop), maxTop)}px`;
+          toolTipElem.style.left = `${Math.min(Math.max(pointerPos.x, mixLeft), maxLeft)}px`;
+          toolTipElem.style.opacity = 1;
+        }
+
+        // Move tooltip
+        // toolTipElem.style.top = `${pointerPos.y}px`;
+        // toolTipElem.style.left = `${pointerPos.x}px`;
 
         function getOffset(el) {
           const rect = el.getBoundingClientRect(),
