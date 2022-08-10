@@ -1,10 +1,10 @@
 {
-  "name": "force-graph",
-  "version": "1.42.11",
+  "name": "force-graph-xy",
+  "version": "1.42.14",
   "description": "2D force-directed graph rendered on HTML5 canvas",
-  "unpkg": "dist/force-graph.min.js",
-  "main": "dist/force-graph.common.js",
-  "module": "dist/force-graph.module.js",
+  "unpkg": "dist/force-graph-xy.min.js",
+  "main": "dist/force-graph-xy.common.js",
+  "module": "dist/force-graph-xy.module.js",
   "types": "src/index.d.ts",
   "repository": {
     "type": "git",
